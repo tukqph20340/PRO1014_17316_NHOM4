@@ -2,11 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package View;
+package Views;
 
-import DomainModel.KhachHang;
-import ViewModel.KhachHangView;
-import Sevice.KhachHangSevice;
+import DomainModels.KhachHang;
+import ViewModels.KhachHangView;
+import ServiceIplm.KhachHangSevice;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
@@ -348,7 +348,7 @@ void loat() {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {                                         
         // TODO add your handling code here:
         int row = TbKhachHang.getSelectedRow();
         if (row == -1) {
@@ -366,8 +366,8 @@ void loat() {
             }
         }
     
-    //GEN-LAST:event_jButto
-    }//GEN-LAST:event_jButton5ActionPerformed
+                           
+    }                                        
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
@@ -389,7 +389,7 @@ void loat() {
             return;
         } catch (Exception e) {
         }
-    //GEN-LAST:event_jButton6ActionPerformed
+                                            
 
     }//GEN-LAST:event_jButton6ActionPerformed
 

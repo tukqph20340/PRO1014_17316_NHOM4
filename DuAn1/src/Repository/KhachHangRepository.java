@@ -4,7 +4,7 @@
  */
 package Repository;
 
-import DomainModel.KhachHang;
+import DomainModels.KhachHang;
 import java.util.List;
 import java.sql.Connection;
 import java.sql.PreparedStatement;

@@ -2,13 +2,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package DomainModel;
+package ViewModels;
 
 /**
  *
  * @author fptshop
  */
-public class KhachHang {
+public class KhachHangView {
 
     private String MaKH;
     private String HoVaTen;
@@ -17,10 +17,10 @@ public class KhachHang {
     private String NgaySinh;
     private String ThanhPho;
 
-    public KhachHang() {
+    public KhachHangView() {
     }
 
-    public KhachHang(String MaKH, String HoVaTen, String DiaChi, String Sdt, String NgaySinh, String ThanhPho) {
+    public KhachHangView(String MaKH, String HoVaTen, String DiaChi, String Sdt, String NgaySinh, String ThanhPho) {
         this.MaKH = MaKH;
         this.HoVaTen = HoVaTen;
         this.DiaChi = DiaChi;

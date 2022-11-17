@@ -20,7 +20,7 @@ public class DangNhapRepository {
     public List<DangNhap> select(){
         ArrayList<DangNhap> list = new ArrayList<>();
         try {
-            Connection con = DBContext.getConnection();
+            Connection con = DBContextTu.getConnection();
             String sql = "select TaiKhoan , MatKhau , Ten from TaiKhoan inner join ChucVu on TaiKhoan.MaCV = ChucVu.MaCV";
             PreparedStatement st = con.prepareStatement(sql);
             ResultSet rs = st.executeQuery();

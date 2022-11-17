@@ -21,7 +21,7 @@ public class KhachHangRepository {
     public List<KhachHang> select() {
         ArrayList<KhachHang> list = new ArrayList<>();
         try {
-            Connection con = DBContext.getConnection();
+            Connection con = DBContextTu.getConnection();
             String sql = "select MaKH,HoVaTen,DiaChi,Sdt,NgaySinh,ThanhPho from KhachHang";
             PreparedStatement st = con.prepareStatement(sql);
             ResultSet rs = st.executeQuery();
@@ -50,7 +50,7 @@ public class KhachHangRepository {
     public List<KhachHang> select1(String makh) {
         ArrayList<KhachHang> list = new ArrayList<>();
         try {
-            Connection con = DBContext.getConnection();
+            Connection con = DBContextTu.getConnection();
             String sql = "select MaKH,HoVaTen,DiaChi,Sdt,NgaySinh,ThanhPho from KhachHang where MaKH=?";
             PreparedStatement st = con.prepareStatement(sql);
             st.setString(1, makh);
@@ -80,7 +80,7 @@ public class KhachHangRepository {
     public List<KhachHang> insert(String MaKH, String HoVaTen, String DiaChi, String Sdt, String NgaySinh, String ThanhPho) {
         ArrayList<KhachHang> list = new ArrayList<>();
         try {
-            Connection con = DBContext.getConnection();
+            Connection con = DBContextTu.getConnection();
             String sql = "insert KhachHang(MaKH,HoVaTen,DiaChi,Sdt,NgaySinh,ThanhPho)values(?,?,?,?,?,?)";
             PreparedStatement st = con.prepareStatement(sql);
             st.setString(1, MaKH);
@@ -108,7 +108,7 @@ public class KhachHangRepository {
     public List<KhachHang> update(String MaKH, String HoVaTen, String DiaChi, String Sdt, String NgaySinh, String ThanhPho) {
         ArrayList<KhachHang> list = new ArrayList<>();
         try {
-            Connection con = DBContext.getConnection();
+            Connection con = DBContextTu.getConnection();
             String sql = "update KhachHang set HoVaTen=?,DiaChi=?,Sdt=?,NgaySinh=?,ThanhPho=? where MaKH=?";
             PreparedStatement st = con.prepareStatement(sql);
             st.setString(6, MaKH);
@@ -135,7 +135,7 @@ public class KhachHangRepository {
      public List<KhachHang> delete(String MaKH) {
         ArrayList<KhachHang> list = new ArrayList<>();
         try {
-            Connection con = DBContext.getConnection();
+            Connection con = DBContextTu.getConnection();
             String sql = "delete from KhachHang where MaKH=?";
             PreparedStatement st = con.prepareStatement(sql);
             st.setString(1, MaKH);

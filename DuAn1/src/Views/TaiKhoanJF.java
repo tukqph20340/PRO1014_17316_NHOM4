@@ -27,7 +27,7 @@ public class TaiKhoanJF extends javax.swing.JFrame {
     public TaiKhoanJF() {
         initComponents();
         setLocationRelativeTo(this);
-        list = tk.getall();
+        list =tk.fina();
         show(list);
 
     }
@@ -354,47 +354,47 @@ public class TaiKhoanJF extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
-        if (txtMaTK.getText().isEmpty()) {
+        if (txtMaTK.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Mã không được để trống");
             return;
         }
-        if (txtMaChucVu.getText().isEmpty()) {
+        if (txtMaChucVu.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Mã chức vụ không được để trống");
             return;
         }
-        if (txtSDT.getText().isEmpty()) {
+        if (txtSDT.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Số điện thoại không được để trống");
             return;
         }
-        if (txtTaiKhoan.getText().isEmpty()) {
+        if (txtTaiKhoan.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Tài khoản không được để trống");
             return;
         }
-        if (txtMatKhau.getText().isEmpty()) {
+        if (txtMatKhau.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Mật khẩu không được để trống");
             return;
         }
-        if (txtEmail.getText().isEmpty()) {
+        if (txtEmail.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Email không được để trống");
             return;
         }
-        JOptionPane.showMessageDialog(this, tk.add(fill()));
-        list = tk.getall();
+        JOptionPane.showMessageDialog(this, tk.addTK(fill()));
+        list = tk.fina();
         show(list);
     }//GEN-LAST:event_btnThemActionPerformed
 
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
-        JOptionPane.showMessageDialog(this, tk.update(fill()));
-        list = tk.getall();
+        JOptionPane.showMessageDialog(this, tk.SuaTK(fill()));
+        list = tk.fina();
         show(list);
     }//GEN-LAST:event_btnSuaActionPerformed
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
         int a = JOptionPane.showConfirmDialog(this, "Banj có muốn xóa không?", "Xóa", JOptionPane.YES_NO_CANCEL_OPTION);
         if (a == JOptionPane.YES_OPTION) {
-            JOptionPane.showMessageDialog(this, tk.delete(fill()));
+            JOptionPane.showMessageDialog(this, tk.XoaTK(fill()));
             clear();
-            list = tk.getall();
+            list = tk.fina();
             show(list);
         }
 

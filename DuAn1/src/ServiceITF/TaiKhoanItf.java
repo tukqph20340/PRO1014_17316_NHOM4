@@ -6,6 +6,7 @@
 package ServiceITF;
 
 import DomainModels.TaiKhoan;
+import ViewModels.TaiKhoanView;
 import java.util.List;
 
 /**
@@ -13,5 +14,8 @@ import java.util.List;
  * @author vitam
  */
 public interface TaiKhoanItf {
-    public List<TaiKhoan> getallTaiKhoan();
+    public List<TaiKhoanView> getallTaiKhoan();
+     public String addTK(TaiKhoan tk);
+      public String XoaTK(TaiKhoan tk);
+       public String SuaTK(TaiKhoan tk);
 }

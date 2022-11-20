@@ -5,7 +5,7 @@
  */
 package ServiceITF;
 
-import DomailModel.DienThoaiChiTiet;
+import DomainModels.DienThoaiChiTiet;
 import ViewModels.CTSPViewModel;
 import java.util.ArrayList;
 import java.util.List;

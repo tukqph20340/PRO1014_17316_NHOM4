@@ -22,7 +22,7 @@ public class NhanVienRepository {
     public List<NhanVien> select() {
         ArrayList<NhanVien> list = new ArrayList<>();
         try {
-            Connection con = DBContext.getConnection();
+            Connection con = DBContext.openDBConnection();
             String sql = "select MaNV,HoVaTen,DiaChi,GioiTinh,Sdt,NgaySinh,MaTK,MaCH,MaBH from NhanVien";
             PreparedStatement st = con.prepareStatement(sql);
             ResultSet rs = st.executeQuery();
@@ -57,7 +57,7 @@ public class NhanVienRepository {
     public List<NhanVien> getOne(String manv) {
         ArrayList<NhanVien> list = new ArrayList<>();
         try {
-            Connection con = DBContext.getConnection();
+            Connection con = DBContext.openDBConnection();
             String sql = "select MaNV,HoVaTen,DiaChi,GioiTinh,Sdt,NgaySinh,MaTK,MaCH,MaBH from NhanVien";
             PreparedStatement st = con.prepareStatement(sql);
             st.setString(1, manv);
@@ -94,7 +94,7 @@ public class NhanVienRepository {
     public List<NhanVien> insert(String MaNV, String HoVaTen, String DiaChi, String GioiTinh, String Sdt, String NgaySinh) {
         ArrayList<NhanVien> list = new ArrayList<>();
         try {
-            Connection con = DBContext.getConnection();
+            Connection con = DBContext.openDBConnection();
             String sql = "insert NhanVien(MaNV,HoVaTen,DiaChi,GioiTinh,Sdt,NgaySinh)values(?,?,?,?,?,?)";
             PreparedStatement st = con.prepareStatement(sql);
             st.setString(1, MaNV);
@@ -122,7 +122,7 @@ public class NhanVienRepository {
     public List<NhanVien> update(String MaNV, String HoVaTen, String DiaChi, String GioiTinh, String Sdt, String NgaySinh) {
         ArrayList<NhanVien> list = new ArrayList<>();
         try {
-            Connection con = DBContext.getConnection();
+            Connection con = DBContext.openDBConnection();
             String sql = "Update NhanVien set HoVaTen=?,DiaChi=?,GioiTinh=?,Sdt=?,NgaySinh=? where MaNV=?";
             PreparedStatement st = con.prepareStatement(sql);
             st.setString(1, MaNV);
@@ -150,7 +150,7 @@ public class NhanVienRepository {
     public List<NhanVien> delete(String MaNV) {
         ArrayList<NhanVien> list = new ArrayList<>();
         try {
-            Connection con = DBContext.getConnection();
+            Connection con = DBContext.openDBConnection();
             String sql = "delete from NhanVien where MaNV=?";
             PreparedStatement st = con.prepareStatement(sql);
             st.setString(1, MaNV);

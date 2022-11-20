@@ -6,7 +6,7 @@
 package Repository;
 
 import DomainModels.CuaHang;
-import Utilities.DBConnection;
+import Untility.DBConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

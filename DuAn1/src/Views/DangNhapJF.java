@@ -4,7 +4,7 @@
  */
 package Views;
 
-import ServiceIplm.DangNhapSevice;
+//import ServiceIplm.DangNhapSevice;
 import java.util.List;
 import javax.swing.JOptionPane;
 
@@ -17,7 +17,7 @@ public class DangNhapJF extends javax.swing.JFrame {
     /**
      * Creates new form DangNhapJF
      */
-    private DangNhapSevice dn = new DangNhapSevice();
+    //private DangNhapSevice dn = new DangNhapSevice();
 
     public DangNhapJF() {
         initComponents();
@@ -151,7 +151,7 @@ public class DangNhapJF extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        String tK = txtTK.getText();
+        /*String tK = txtTK.getText();
         String matKhau = String.valueOf(PassWork.getPassword());
         String ChucVu = "";
         if (RCv1.isSelected() == true) {
@@ -178,7 +178,7 @@ public class DangNhapJF extends javax.swing.JFrame {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "lỗi đăng nhập");
             return;
-        }
+        }*/
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

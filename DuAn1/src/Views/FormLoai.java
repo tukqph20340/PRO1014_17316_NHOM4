@@ -5,18 +5,55 @@
  */
 package Views;
 
+import DomainModels.Loai;
+import ServiceITF.ILoaiService;
+import ServiceIplm.LoaiIplm;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author DELL
  */
-public class Loai extends javax.swing.JFrame {
+public class FormLoai extends javax.swing.JFrame {
 
     /**
      * Creates new form NewJFrame1
      */
-    public Loai() {
+    public FormLoai() {
         initComponents();
         setLocationRelativeTo(null);
+        loadTable(service.getListLoai());
+    }
+    private DefaultTableModel model;
+    private ILoaiService service = new LoaiIplm();
+
+    public void loadTable(ArrayList<Loai> list) {
+        model = (DefaultTableModel) tbQuanLyLoaiSanPham.getModel();
+        model.setRowCount(0);
+        model.setColumnIdentifiers(new String[]{"ID", "Mã Loại", "Tên Loại"});
+        for (Loai x : list) {
+            model.addRow(new Object[]{x.getId(), x.getMaLoai(), x.getTenLoai()});
+        }
+    }
+
+    public boolean checkMa() {
+        for (String c : service.getListMaL()) {
+            if (txtMaLoai.getText().equals(c)) {
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    public boolean checkTim() {
+        for (String c : service.getListMaL()) {
+            if (txtTimKiem.getText().equals(c)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
@@ -94,6 +131,11 @@ public class Loai extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tbQuanLyLoaiSanPham.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbQuanLyLoaiSanPhamMouseClicked(evt);
+            }
+        });
         jScrollPane33.setViewportView(tbQuanLyLoaiSanPham);
 
         jLabel35.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -106,6 +148,11 @@ public class Loai extends javax.swing.JFrame {
         });
 
         btTimKiem.setText("Tìm Kiếm");
+        btTimKiem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btTimKiemActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel32Layout = new javax.swing.GroupLayout(jPanel32);
         jPanel32.setLayout(jPanel32Layout);
@@ -200,23 +247,113 @@ public class Loai extends javax.swing.JFrame {
 
     private void btThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btThemActionPerformed
         // TODO add your handling code here:
+        Loai x = new Loai();
+        x.setMaLoai(txtMaLoai.getText());
+        x.setTenLoai(txtTenLoai.getText());
+        try {
+            if (txtMaLoai.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Mã Loại không được để trống");
+                return;
+            }
+            if (checkMa()) {
+                JOptionPane.showMessageDialog(this, "Mã Loại đã được sử dụng");
+                return;
+            }
+            if (txtTenLoai.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Tên Loại không được để trống");
+                return;
+            }
+            if (service.them(x)) {
+                loadTable(service.getListLoai());
+                JOptionPane.showMessageDialog(this, "Thêm Thành Công");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }//GEN-LAST:event_btThemActionPerformed
 
     private void btXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btXoaActionPerformed
         // TODO add your handling code here:
+        String ma = txtMaLoai.getText();
+        try {
+            if (txtMaLoai.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Mã Loại không được để trống");
+                return;
+            }
+            if (checkMa()) {
+                JOptionPane.showMessageDialog(this, "Mã Loại đã được sử dụng");
+                return;
+            }
+            if (service.xoa(ma)) {
+                loadTable(service.getListLoai());
+                JOptionPane.showMessageDialog(this, "Xóa Thành Công");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }//GEN-LAST:event_btXoaActionPerformed
 
     private void btSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSuaActionPerformed
         // TODO add your handling code here:
+        String ma = txtMaLoai.getText();
+        Loai x = new Loai();
+        x.setTenLoai(txtTenLoai.getText());
+        try {
+            if (txtMaLoai.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Mã Loại không được để trống");
+                return;
+            }
+            if (checkMa() == false) {
+                JOptionPane.showMessageDialog(this, "Mã Loại không tồn tại");
+                return;
+            }
+            if (txtTenLoai.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Tên Loại không được để trống");
+                return;
+            }
+            if (service.sua(x, ma)) {
+                loadTable(service.getListLoai());
+                JOptionPane.showMessageDialog(this, "Sửa Thành Công");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }//GEN-LAST:event_btSuaActionPerformed
 
     private void btClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btClearActionPerformed
         // TODO add your handling code here:
+        txtMaLoai.setText("");
+        txtTenLoai.setText("");
     }//GEN-LAST:event_btClearActionPerformed
 
     private void txtTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTimKiemActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTimKiemActionPerformed
+
+    private void tbQuanLyLoaiSanPhamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbQuanLyLoaiSanPhamMouseClicked
+        // TODO add your handling code here:
+        int row = tbQuanLyLoaiSanPham.getSelectedRow();
+        txtMaLoai.setText(tbQuanLyLoaiSanPham.getValueAt(row, 1).toString());
+        txtTenLoai.setText(tbQuanLyLoaiSanPham.getValueAt(row, 2).toString());
+    }//GEN-LAST:event_tbQuanLyLoaiSanPhamMouseClicked
+
+    private void btTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btTimKiemActionPerformed
+        // TODO add your handling code here:
+        String maL = txtTimKiem.getText();
+        if (maL.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Bạn phải nhập Mã Loại");
+            return;
+        }
+        if (checkTim() == false) {
+            JOptionPane.showMessageDialog(this, "Mã Loại không tồn tại");
+            return;
+        }
+        try {
+            loadTable(service.tim(maL));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_btTimKiemActionPerformed
 
     /**
      * @param args the command line arguments
@@ -235,14 +372,18 @@ public class Loai extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Loai.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormLoai.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Loai.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormLoai.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Loai.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormLoai.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Loai.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormLoai.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -251,7 +392,7 @@ public class Loai extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Loai().setVisible(true);
+                new FormLoai().setVisible(true);
             }
         });
     }

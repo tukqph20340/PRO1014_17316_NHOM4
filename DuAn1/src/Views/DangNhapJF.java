@@ -4,7 +4,7 @@
  */
 package Views;
 
-import ServiceIplm.DangNhapSevice;
+
 import java.util.List;
 import javax.swing.JOptionPane;
 
@@ -17,7 +17,6 @@ public class DangNhapJF extends javax.swing.JFrame {
     /**
      * Creates new form DangNhapJF
      */
-    private DangNhapSevice dn = new DangNhapSevice();
 
     public DangNhapJF() {
         initComponents();

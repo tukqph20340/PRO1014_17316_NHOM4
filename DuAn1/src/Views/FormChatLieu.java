@@ -5,18 +5,65 @@
  */
 package Views;
 
+import DomainModels.ChatLieu;
+import ServiceITF.IChatLieuService;
+import ServiceIplm.ChatLieuIplm;
+import ViewModels.ChatLieuViewModel;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author DELL
  */
-public class ChatLieu extends javax.swing.JFrame {
+public class FormChatLieu extends javax.swing.JFrame {
 
     /**
      * Creates new form ChatLieu
      */
-    public ChatLieu() {
+    public FormChatLieu() {
         initComponents();
         setLocationRelativeTo(null);
+        loadTable(service.getList());
+    }
+    private DefaultTableModel model;
+    private IChatLieuService service = new ChatLieuIplm();
+
+    public void loadTable(ArrayList<ChatLieuViewModel> list) {
+        model = (DefaultTableModel) tbQuanLyChatLieuSanPham.getModel();
+        model.setRowCount(0);
+        model.setColumnIdentifiers(new String[]{"ID", "Mã Chất Liệu", "Tên Chất Liệu"});
+        for (ChatLieuViewModel x : list) {
+            model.addRow(new Object[]{x.getId(), x.getMaChatLieu(), x.getTenChatLieu()});
+        }
+    }
+    
+    public void timKiem(ArrayList<ChatLieu> list) {
+        model = (DefaultTableModel) tbQuanLyChatLieuSanPham.getModel();
+        model.setRowCount(0);
+        model.setColumnIdentifiers(new String[]{"ID", "Mã Chất Liệu", "Tên Chất Liệu"});
+        for (ChatLieu x : list) {
+            model.addRow(new Object[]{x.getId(), x.getMaChatLieu(), x.getTenChatLieu()});
+        }
+    }
+
+    public boolean checkMa() {
+        for (String c : service.getListMaCL()) {
+            if (txtMaChatLieu.getText().equals(c)) {
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    public boolean checkTim() {
+        for (String c : service.getListMaCL()) {
+            if (txtTimKiem.getText().equals(c)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
@@ -87,6 +134,11 @@ public class ChatLieu extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tbQuanLyChatLieuSanPham.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbQuanLyChatLieuSanPhamMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tbQuanLyChatLieuSanPham);
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -99,6 +151,11 @@ public class ChatLieu extends javax.swing.JFrame {
         });
 
         btTimKiem.setText("Tìm Kiếm");
+        btTimKiem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btTimKiemActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -198,23 +255,114 @@ public class ChatLieu extends javax.swing.JFrame {
 
     private void btThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btThemActionPerformed
         // TODO add your handling code here:
+        ChatLieu x = new ChatLieu();
+        x.setMaChatLieu(txtMaChatLieu.getText());
+        x.setTenChatLieu(txtTenChatLieu.getText());
+        try {
+            if (txtMaChatLieu.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Mã Chất Liệu không được để trống");
+                return;
+            }
+            if (checkMa()) {
+                JOptionPane.showMessageDialog(this, "Mã Chất Liệu đã được sử dụng");
+                return;
+            }
+            if (txtTenChatLieu.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Tên Chất Liệu không được để trống");
+                return;
+            }
+            if (service.them(x)) {
+                loadTable(service.getList());
+                JOptionPane.showMessageDialog(this, "Thêm Thành Công");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }//GEN-LAST:event_btThemActionPerformed
 
     private void btXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btXoaActionPerformed
         // TODO add your handling code here:
+        String ma = txtMaChatLieu.getText();
+        try {
+            if (txtMaChatLieu.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Mã Chất Liệu không được để trống");
+                return;
+            }
+            if (checkMa()) {
+                JOptionPane.showMessageDialog(this, "Mã Chất Liệu đã được sử dụng");
+                return;
+            }
+            if (service.xoa(ma)) {
+                loadTable(service.getList());
+                JOptionPane.showMessageDialog(this, "Xóa Thành Công");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }//GEN-LAST:event_btXoaActionPerformed
 
     private void btClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btClearActionPerformed
         // TODO add your handling code here:
+        txtMaChatLieu.setText("");
+        txtTenChatLieu.setText("");
     }//GEN-LAST:event_btClearActionPerformed
 
     private void txtTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTimKiemActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_txtTimKiemActionPerformed
 
     private void btSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSuaActionPerformed
         // TODO add your handling code here:
+        String ma = txtMaChatLieu.getText();
+        ChatLieu x = new ChatLieu();
+        x.setTenChatLieu(txtTenChatLieu.getText());
+        try {
+            if (txtMaChatLieu.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Mã Chất Liệu không được để trống");
+                return;
+            }
+            if (checkMa() == false) {
+                JOptionPane.showMessageDialog(this, "Mã Chất Liệu không tồn tại");
+                return;
+            }
+            if (txtTenChatLieu.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Tên Chất Liệu không được để trống");
+                return;
+            }
+            if (service.sua(x, ma)) {
+                loadTable(service.getList());
+                JOptionPane.showMessageDialog(this, "Sửa Thành Công");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }//GEN-LAST:event_btSuaActionPerformed
+
+    private void tbQuanLyChatLieuSanPhamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbQuanLyChatLieuSanPhamMouseClicked
+        // TODO add your handling code here:
+        int row = tbQuanLyChatLieuSanPham.getSelectedRow();
+        txtMaChatLieu.setText(tbQuanLyChatLieuSanPham.getValueAt(row, 1).toString());
+        txtTenChatLieu.setText(tbQuanLyChatLieuSanPham.getValueAt(row, 2).toString());
+    }//GEN-LAST:event_tbQuanLyChatLieuSanPhamMouseClicked
+
+    private void btTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btTimKiemActionPerformed
+        // TODO add your handling code here:
+        String maCL = txtTimKiem.getText();
+        if (maCL.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Bạn phải nhập Mã Chất Liệu");
+            return;
+        }
+        if (checkTim() == false) {
+            JOptionPane.showMessageDialog(this, "Mã Chất Liệu không tồn tại");
+            return;
+        }
+        try {
+            timKiem(service.tim(maCL));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_btTimKiemActionPerformed
 
     /**
      * @param args the command line arguments
@@ -233,21 +381,23 @@ public class ChatLieu extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ChatLieu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormChatLieu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ChatLieu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormChatLieu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ChatLieu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormChatLieu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ChatLieu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormChatLieu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ChatLieu().setVisible(true);
+                new FormChatLieu().setVisible(true);
             }
         });
     }

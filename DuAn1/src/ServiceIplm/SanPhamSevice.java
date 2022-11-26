@@ -34,15 +34,15 @@ public class SanPhamSevice implements SanPhamITF {
                 SanPhamView spview = new SanPhamView(
                         sanPhamModel.getId(),
                         sanPhamModel.getMaSP(),
-                        sanPhamModel.getIdCuaHang(),
-                        sanPhamModel.getIdNhaCungCap(),
+                        sanPhamModel.getTenCuaHang(),
+                        sanPhamModel.getTenNhaCungCap(),
                         sanPhamModel.getTen(),
-                        sanPhamModel.getIdLoai(),
-                        sanPhamModel.getIdHang(),
-                        sanPhamModel.getIdMau(),
-                        sanPhamModel.getIdKichCo(),
-                        sanPhamModel.getIdChatLieu(),
-                        sanPhamModel.getIdKieuDang(),
+                        sanPhamModel.getTenLoai(),
+                        sanPhamModel.getTenHang(),
+                        sanPhamModel.getTenMau(),
+                        sanPhamModel.getTenKichCo(),
+                        sanPhamModel.getTenChatLieu(),
+                        sanPhamModel.getTenieuDang(),
                         sanPhamModel.getMota(),
                         sanPhamModel.getNgaySanXuat(),
                         sanPhamModel.getGiaBan(),
@@ -56,35 +56,35 @@ public class SanPhamSevice implements SanPhamITF {
         }
         return listSp;
     }
-
-    @Override
-    public List<SanPhamModel> select1() {
-        try {
-            return sanphamList.select();
-        } catch (Exception e) {
-            return null;
-        }
-
-    }
-
+//
+//    @Override
+//    public List<SanPhamModel> select1() {
+//        try {
+//            return sanphamList.select();
+//        } catch (Exception e) {
+//            return null;
+//        }
+//
+//    }
+//
     @Override
     public List<SanPhamModel> selectTimKiem(String Ma) {
         try {
-            return sanphamList.selecttimKiem(Ma);
+            return sanphamList.select1(Ma);
         } catch (Exception e) {
             return null;
         }
     }
 
     @Override
-    public List<SanPhamModel> insert(String MaSP, String IdCH, String IdNCC, String Ten, String IdLoai, String IdHang, String IdMau, String IdKichCo, String IdChatLieu, String IdKieuDang, String Mota, String NgaySanXuat, Integer GiaBan, Integer SoLuong, String TrangThai) {
+    public List<SanPhamModel> insert(String MaSP, String IdCH, String IdNCC, String Ten, String IdLoai, String IdHang, String IdMau, String IdKichCo, String IdChatLieu, String IdKieuDang, String Mota, String NgaySanXuat, Integer GiaBan, Integer SoLuong) {
         try {
-            return sanphamList.insert(MaSP, IdCH, IdNCC, Ten, IdLoai, IdHang, IdMau, IdKichCo, IdChatLieu, IdKieuDang, Mota, NgaySanXuat, GiaBan, SoLuong, TrangThai);
+            return sanphamList.insert(MaSP, IdCH, IdNCC, Ten, IdLoai, IdHang, IdMau, IdKichCo, IdChatLieu, IdKieuDang, Mota, NgaySanXuat, GiaBan, SoLuong);
         } catch (Exception e) {
             return null;
         }
     }
-
+//
     @Override
     public List<SanPhamModel> delete(String id) {
         try {
@@ -93,23 +93,23 @@ public class SanPhamSevice implements SanPhamITF {
             return null;
         }
     }
-
+//
     @Override
-    public List<SanPhamModel> update(String Id, String MaSP, String IdCH, String IdNCC, String Ten, String IdLoai, String IdHang, String IdMau, String IdKichCo, String IdChatLieu, String IdKieuDang, String Mota, String NgaySanXuat, int GiaBan, int SoLuong, String TrangThai) {
+    public List<SanPhamModel> update(String Id, String MaSP, String IdCH, String IdNCC, String Ten, String IdLoai, String IdHang, String IdMau, String IdKichCo, String IdChatLieu, String IdKieuDang, String Mota, String NgaySanXuat, int GiaBan, int SoLuong) {
         try {
-            return sanphamList.update(Id, MaSP, IdCH, IdNCC, Ten, IdLoai, IdHang, IdMau, IdKichCo, IdChatLieu, IdKieuDang, Mota, NgaySanXuat, GiaBan, SoLuong, TrangThai);
+            return sanphamList.update(Id, MaSP, IdCH, IdNCC, Ten, IdLoai, IdHang, IdMau, IdKichCo, IdChatLieu, IdKieuDang, Mota, NgaySanXuat, GiaBan, SoLuong);
         } catch (Exception e) {
             return null;
         }
     }
-
-    @Override
-    public List<SanPhamModel> selectLoc(String GiaThap, String Giacao) {
-        try {
-            return sanphamList.selectLoc(GiaThap, Giacao);
-        } catch (Exception e) {
-            return null;
-        }
-    }
+//
+//    @Override
+//    public List<SanPhamModel> selectLoc(String GiaThap, String Giacao) {
+//        try {
+//            return sanphamList.selectLoc(GiaThap, Giacao);
+//        } catch (Exception e) {
+//            return null;
+//        }
+//    }
 
 }

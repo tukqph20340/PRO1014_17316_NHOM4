@@ -1056,6 +1056,9 @@
                     <Component class="javax.swing.JTextField" name="txtDate">
                     </Component>
                     <Component class="javax.swing.JTextField" name="txtTrangThai">
+                      <Properties>
+                        <Property name="editable" type="boolean" value="false"/>
+                      </Properties>
                     </Component>
                     <Component class="javax.swing.JTextField" name="txtSoLuong">
                     </Component>
@@ -1065,8 +1068,8 @@
                       <Properties>
                         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                           <StringArray count="2">
-                            <StringItem index="0" value="38C915A8-332B-4CB0-B1B4-6D9C394D931E"/>
-                            <StringItem index="1" value="FE52AFF7-E16B-4C5A-BD85-D525F661F83A"/>
+                            <StringItem index="0" value="GUCCI"/>
+                            <StringItem index="1" value="GABANA"/>
                           </StringArray>
                         </Property>
                       </Properties>
@@ -1078,9 +1081,9 @@
                       <Properties>
                         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                           <StringArray count="3">
-                            <StringItem index="0" value="626A70E6-A7CC-4DB1-B5BA-188004231F1C"/>
-                            <StringItem index="1" value="37FC37EC-FB93-4531-AC2B-5EA378510909"/>
-                            <StringItem index="2" value="38FFAC3F-4DD0-4378-B4B0-72FF7C176D79"/>
+                            <StringItem index="0" value="&#xc1;o Phao"/>
+                            <StringItem index="1" value="&#xc1;o C&#x1ed9;c"/>
+                            <StringItem index="2" value="&#xc1;o D&#xe0;i"/>
                           </StringArray>
                         </Property>
                       </Properties>
@@ -1095,8 +1098,8 @@
                       <Properties>
                         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                           <StringArray count="2">
-                            <StringItem index="0" value="F4D6B6D4-2E76-44A9-9ECB-2E76751136DD"/>
-                            <StringItem index="1" value="045960D2-6C56-4132-A033-D46CC8FFC1D5"/>
+                            <StringItem index="0" value="NHOM4SHOP"/>
+                            <StringItem index="1" value="SHOP4"/>
                           </StringArray>
                         </Property>
                       </Properties>
@@ -1111,11 +1114,11 @@
                       <Properties>
                         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                           <StringArray count="5">
-                            <StringItem index="0" value="ADE98D8C-6630-40D7-BE08-1F0BF09F2F4C"/>
-                            <StringItem index="1" value="604835B0-06BD-4C85-A455-34373138E836"/>
-                            <StringItem index="2" value="503C559F-7B90-48A7-BC73-A604BD1BAD24"/>
-                            <StringItem index="3" value="0A63C18F-09BC-4689-9E71-D2231529ADF9"/>
-                            <StringItem index="4" value="B935DA47-DA4A-45A2-9F58-F9ECFF6B0161"/>
+                            <StringItem index="0" value="V&#xe0;ng"/>
+                            <StringItem index="1" value="N&#xe2;u"/>
+                            <StringItem index="2" value="Xanh"/>
+                            <StringItem index="3" value="&#x110;&#x1ecf;"/>
+                            <StringItem index="4" value="&#x110;en"/>
                           </StringArray>
                         </Property>
                       </Properties>
@@ -1127,8 +1130,8 @@
                       <Properties>
                         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                           <StringArray count="2">
-                            <StringItem index="0" value="FEE646DE-8EC3-413C-8D7E-2954DCDED996"/>
-                            <StringItem index="1" value="B5836AF7-571C-48E4-88F5-8F3273E2C23F"/>
+                            <StringItem index="0" value="Nike"/>
+                            <StringItem index="1" value="Gucci"/>
                           </StringArray>
                         </Property>
                       </Properties>
@@ -1140,9 +1143,9 @@
                       <Properties>
                         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                           <StringArray count="3">
-                            <StringItem index="0" value="CAB68675-34DC-40D7-9CB3-1216441E03B3"/>
-                            <StringItem index="1" value="E6D9B9C3-97C3-4EC5-8B86-BAE7F2D01FE2"/>
-                            <StringItem index="2" value="F06C9753-FBB5-414C-968B-D42B0114D253"/>
+                            <StringItem index="0" value="M"/>
+                            <StringItem index="1" value="X"/>
+                            <StringItem index="2" value="XL"/>
                           </StringArray>
                         </Property>
                       </Properties>
@@ -1157,8 +1160,8 @@
                       <Properties>
                         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                           <StringArray count="2">
-                            <StringItem index="0" value="2E90A541-7B82-4714-AB26-4D52BF73936F"/>
-                            <StringItem index="1" value="E7450694-C078-4188-BB20-9153EED68324"/>
+                            <StringItem index="0" value="V&#x1ea3;i T&#x1eb1;m"/>
+                            <StringItem index="1" value="V&#x1ea3;i Th&#xf4;"/>
                           </StringArray>
                         </Property>
                       </Properties>
@@ -1170,9 +1173,9 @@
                       <Properties>
                         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                           <StringArray count="3">
-                            <StringItem index="0" value="1713300F-6F16-474F-9BD1-5BD7E1DE14FA"/>
-                            <StringItem index="1" value="5FD8D5C4-B53E-4F30-8A00-719B00431050"/>
-                            <StringItem index="2" value="B03A28A4-9FA9-46AE-8E73-D4248BB95DB6"/>
+                            <StringItem index="0" value="Ve tr&#x1a1;n"/>
+                            <StringItem index="1" value="Ve nh&#x1ecd;n"/>
+                            <StringItem index="2" value="Ve &#xc1;o"/>
                           </StringArray>
                         </Property>
                       </Properties>

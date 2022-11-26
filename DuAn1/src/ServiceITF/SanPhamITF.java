@@ -16,12 +16,12 @@ import java.sql.*;
 public interface SanPhamITF {
 
     public List<SanPhamView> select();
-
-    public List<SanPhamModel> select1();
-
+//
+//    public List<SanPhamModel> select1();
+//
     public List<SanPhamModel> selectTimKiem(String Ma);
-public List<SanPhamModel> selectLoc(String GiaThap , String Giacao);
-    public List<SanPhamModel> insert(String MaSP, String IdCH, String IdNCC, String Ten, String IdLoai, String IdHang, String IdMau, String IdKichCo, String IdChatLieu, String IdKieuDang, String Mota, String NgaySanXuat, Integer GiaBan, Integer SoLuong, String TrangThai);
+//public List<SanPhamModel> selectLoc(String GiaThap , String Giacao);
+    public List<SanPhamModel> insert(String MaSP, String IdCH, String IdNCC, String Ten, String IdLoai, String IdHang, String IdMau, String IdKichCo, String IdChatLieu, String IdKieuDang, String Mota, String NgaySanXuat, Integer GiaBan, Integer SoLuong);
     public List<SanPhamModel> delete(String id);
-     public List<SanPhamModel> update(String Id,String MaSP, String IdCH, String IdNCC, String Ten, String IdLoai, String IdHang, String IdMau, String IdKichCo, String IdChatLieu, String IdKieuDang, String Mota, String NgaySanXuat, int GiaBan, int SoLuong, String TrangThai) ;
+     public List<SanPhamModel> update(String Id,String MaSP, String IdCH, String IdNCC, String Ten, String IdLoai, String IdHang, String IdMau, String IdKichCo, String IdChatLieu, String IdKieuDang, String Mota, String NgaySanXuat, int GiaBan, int SoLuong) ;
 }

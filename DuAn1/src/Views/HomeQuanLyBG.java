@@ -643,36 +643,38 @@ public class HomeQuanLyBG extends javax.swing.JFrame {
 
         txtId.setEditable(false);
 
-        ComIDNCC.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "38C915A8-332B-4CB0-B1B4-6D9C394D931E", "FE52AFF7-E16B-4C5A-BD85-D525F661F83A" }));
+        txtTrangThai.setEditable(false);
 
-        ComLoai.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "626A70E6-A7CC-4DB1-B5BA-188004231F1C", "37FC37EC-FB93-4531-AC2B-5EA378510909", "38FFAC3F-4DD0-4378-B4B0-72FF7C176D79" }));
+        ComIDNCC.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "GUCCI", "GABANA" }));
+
+        ComLoai.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Áo Phao", "Áo Cộc", "Áo Dài" }));
         ComLoai.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ComLoaiActionPerformed(evt);
             }
         });
 
-        ComCH.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "F4D6B6D4-2E76-44A9-9ECB-2E76751136DD", "045960D2-6C56-4132-A033-D46CC8FFC1D5" }));
+        ComCH.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "NHOM4SHOP", "SHOP4" }));
         ComCH.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ComCHActionPerformed(evt);
             }
         });
 
-        ComMau.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ADE98D8C-6630-40D7-BE08-1F0BF09F2F4C", "604835B0-06BD-4C85-A455-34373138E836", "503C559F-7B90-48A7-BC73-A604BD1BAD24", "0A63C18F-09BC-4689-9E71-D2231529ADF9", "B935DA47-DA4A-45A2-9F58-F9ECFF6B0161" }));
+        ComMau.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Vàng", "Nâu", "Xanh", "Đỏ", "Đen" }));
 
-        ComHang.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "FEE646DE-8EC3-413C-8D7E-2954DCDED996", "B5836AF7-571C-48E4-88F5-8F3273E2C23F" }));
+        ComHang.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nike", "Gucci" }));
 
-        ComKichCo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CAB68675-34DC-40D7-9CB3-1216441E03B3", "E6D9B9C3-97C3-4EC5-8B86-BAE7F2D01FE2", "F06C9753-FBB5-414C-968B-D42B0114D253" }));
+        ComKichCo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "M", "X", "XL" }));
         ComKichCo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ComKichCoActionPerformed(evt);
             }
         });
 
-        ComChatLieu.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2E90A541-7B82-4714-AB26-4D52BF73936F", "E7450694-C078-4188-BB20-9153EED68324" }));
+        ComChatLieu.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Vải Tằm", "Vải Thô" }));
 
-        ComKieuDang.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1713300F-6F16-474F-9BD1-5BD7E1DE14FA", "5FD8D5C4-B53E-4F30-8A00-719B00431050", "B03A28A4-9FA9-46AE-8E73-D4248BB95DB6" }));
+        ComKieuDang.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ve trơn", "Ve nhọn", "Ve Áo" }));
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Thuộc tính"));
 
@@ -1912,7 +1914,7 @@ public class HomeQuanLyBG extends javax.swing.JFrame {
     }//GEN-LAST:event_ComKichCoActionPerformed
 
     private void btnThemSPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemSPActionPerformed
-        // TODO add your handling code here:
+//         TODO add your handling code here:
         String Id = txtId.getText();
         String Ma = txtMaSP.getText();
         String Cuahang = (String) ComCH.getSelectedItem();
@@ -1928,14 +1930,13 @@ public class HomeQuanLyBG extends javax.swing.JFrame {
         String Ngay = txtDate.getText();
         Integer Gia1 = 0;
         Integer soLuong = 0;
-        String TrangThai = txtTrangThai.getText();
         if (Ma.trim().isEmpty()
                 || ten.trim().isEmpty()
                 || MoTa.trim().isEmpty()
                 || Ngay.trim().isEmpty()
                 || txtGia.getText().trim().isEmpty()
                 || txtSoLuong.getText().trim().isEmpty()
-                || TrangThai.trim().isEmpty()) {
+                        ) {
             JOptionPane.showMessageDialog(null, "Có Trường Trống");
             return;
         }
@@ -1953,7 +1954,7 @@ public class HomeQuanLyBG extends javax.swing.JFrame {
         }
         try {
             soLuong = Integer.parseInt(txtSoLuong.getText());
-            if (soLuong < 1) {
+            if (soLuong < 0) {
                 JOptionPane.showMessageDialog(null, "Số Lương Hơn 0");
                 return;
 
@@ -1966,7 +1967,7 @@ public class HomeQuanLyBG extends javax.swing.JFrame {
         SimpleDateFormat fm = new SimpleDateFormat("yyyy-MM-dd");
 
         try {
-            listSp.insert(Ma, Cuahang, NhaCC, ten, loai, Hang, Mau, KichCo, ChatLieu, KieuDang, MoTa, Ngay, Gia1, soLuong, TrangThai);
+            listSp.insert(Ma, Cuahang, NhaCC, ten, loai, Hang, Mau, KichCo, ChatLieu, KieuDang, MoTa, Ngay, Gia1, soLuong);
             ModeLSanPham.setRowCount(0);
             loat();
         } catch (Exception e) {
@@ -1975,24 +1976,28 @@ public class HomeQuanLyBG extends javax.swing.JFrame {
     }//GEN-LAST:event_btnThemSPActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        // TODO add your handling code here:
+//        // TODO add your handling code here:
         String Ma = JOptionPane.showInputDialog(null, "Vui Lòng Nhập Mã Muốn Tìm");
         try {
             List<SanPhamModel> tk = listSp.selectTimKiem(Ma);
+            if (tk.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "mã ko tồn tại");
+                return;
+            }else{
             ModeLSanPham.setRowCount(0);
             for (SanPhamModel sanPhamView : tk) {
                 ModeLSanPham.addRow(new Object[]{
                     sanPhamView.getId(),
                     sanPhamView.getMaSP(),
-                    sanPhamView.getIdCuaHang(),
-                    sanPhamView.getIdNhaCungCap(),
+                    sanPhamView.getTenCuaHang(),
+                    sanPhamView.getTenNhaCungCap(),
                     sanPhamView.getTen(),
-                    sanPhamView.getIdLoai(),
-                    sanPhamView.getIdHang(),
-                    sanPhamView.getIdMau(),
-                    sanPhamView.getIdKichCo(),
-                    sanPhamView.getIdChatLieu(),
-                    sanPhamView.getIdKieuDang(),
+                    sanPhamView.getTenLoai(),
+                    sanPhamView.getTenHang(),
+                    sanPhamView.getTenMau(),
+                    sanPhamView.getTenKichCo(),
+                    sanPhamView.getTenChatLieu(),
+                    sanPhamView.getTenieuDang(),
                     sanPhamView.getMota(),
                     sanPhamView.getNgaySanXuat(),
                     sanPhamView.getGiaBan(),
@@ -2000,35 +2005,34 @@ public class HomeQuanLyBG extends javax.swing.JFrame {
                     sanPhamView.getTrangThai()
 
                 });
-            }
+            }}
         } catch (Exception e) {
         }
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void TbSanPhamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TbSanPhamMouseClicked
-        // TODO add your handling code here:
+//         TODO add your handling code here:
         int row = TbSanPham.getSelectedRow();
-        SanPhamModel mouclick = listSp.select1().get(row);
-        txtId.setText(mouclick.getId());
-        txtMaSP.setText(mouclick.getMaSP());
-        ComCH.setSelectedItem(mouclick.getIdCuaHang());
-        ComIDNCC.setSelectedItem(mouclick.getIdNhaCungCap());
-        txtTenSP.setText(mouclick.getTen());
-        ComLoai.setSelectedItem(mouclick.getIdLoai());
-        ComHang.setSelectedItem(mouclick.getIdHang());
-        ComMau.setSelectedItem(mouclick.getIdMau());
-        ComKichCo.setSelectedItem(mouclick.getIdKichCo());
-        ComChatLieu.setSelectedItem(mouclick.getIdChatLieu());
-        ComKieuDang.setSelectedItem(mouclick.getIdKieuDang());
-        txtMoTA.setText(mouclick.getMota());
-        txtDate.setText(mouclick.getNgaySanXuat());
-        txtGia.setText(mouclick.getGiaBan().toString());
-        txtSoLuong.setText(mouclick.getSoLuong().toString());
-        txtTrangThai.setText(mouclick.getTrangThai());
+        txtId.setText(TbSanPham.getValueAt(row, 0).toString());
+        txtMaSP.setText(TbSanPham.getValueAt(row, 1).toString());
+        ComCH.setSelectedItem(TbSanPham.getValueAt(row, 2).toString());
+        ComIDNCC.setSelectedItem(TbSanPham.getValueAt(row, 3).toString());
+        txtTenSP.setText(TbSanPham.getValueAt(row, 4).toString());
+        ComLoai.setSelectedItem(TbSanPham.getValueAt(row, 5).toString());
+        ComHang.setSelectedItem(TbSanPham.getValueAt(row, 6).toString());
+        ComMau.setSelectedItem(TbSanPham.getValueAt(row, 7).toString());
+        ComKichCo.setSelectedItem(TbSanPham.getValueAt(row, 8).toString());
+        ComChatLieu.setSelectedItem(TbSanPham.getValueAt(row, 9).toString());
+        ComKieuDang.setSelectedItem(TbSanPham.getValueAt(row, 10).toString());
+        txtMoTA.setText(TbSanPham.getValueAt(row, 11).toString());
+        txtDate.setText(TbSanPham.getValueAt(row, 12).toString());
+        txtGia.setText(TbSanPham.getValueAt(row, 13).toString());
+        txtSoLuong.setText(TbSanPham.getValueAt(row, 14).toString());
+        txtTrangThai.setText(TbSanPham.getValueAt(row, 15).toString());
     }//GEN-LAST:event_TbSanPhamMouseClicked
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        // TODO add your handling code here:
+//         TODO add your handling code here:
         int row = TbSanPham.getSelectedRow();
         if (row == -1) {
 
@@ -2062,14 +2066,14 @@ public class HomeQuanLyBG extends javax.swing.JFrame {
         String Ngay = txtDate.getText();
         Integer Gia1 = 0;
         Integer soLuong = 0;
-        String TrangThai = txtTrangThai.getText();
+
         if (Ma.trim().isEmpty()
                 || ten.trim().isEmpty()
                 || MoTa.trim().isEmpty()
                 || Ngay.trim().isEmpty()
                 || txtGia.getText().trim().isEmpty()
                 || txtSoLuong.getText().trim().isEmpty()
-                || TrangThai.trim().isEmpty()) {
+               ) {
             JOptionPane.showMessageDialog(null, "Có Trường Trống");
             return;
         }
@@ -2100,7 +2104,7 @@ public class HomeQuanLyBG extends javax.swing.JFrame {
         SimpleDateFormat fm = new SimpleDateFormat("yyyy-MM-dd");
 
         try {
-            listSp.update(Id,Ma, Cuahang, NhaCC, ten, loai, Hang, Mau, KichCo, ChatLieu, KieuDang, MoTa, Ngay, Gia1, soLuong, TrangThai);
+            listSp.update(Id,Ma, Cuahang, NhaCC, ten, loai, Hang, Mau, KichCo, ChatLieu, KieuDang, MoTa, Ngay, Gia1, soLuong);
             ModeLSanPham.setRowCount(0);
             loat();
         } catch (Exception e) {
@@ -2115,7 +2119,7 @@ public class HomeQuanLyBG extends javax.swing.JFrame {
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         // TODO add your handling code here:
-        listSp.selectLoc(txtgiaThap.getText(), txtGiaCao.getText());
+//        listSp.selectLoc(txtgiaThap.getText(), txtGiaCao.getText());
         
     }//GEN-LAST:event_jButton8ActionPerformed
 
@@ -2126,20 +2130,20 @@ public class HomeQuanLyBG extends javax.swing.JFrame {
                 ModeLSanPham.addRow(new Object[]{
                     sanPhamView.getId(),
                     sanPhamView.getMaSP(),
-                    sanPhamView.getIdCuaHang(),
-                    sanPhamView.getIdNhaCungCap(),
+                    sanPhamView.getTenCuaHang(),
+                    sanPhamView.getTenNhaCungCap(),
                     sanPhamView.getTen(),
-                    sanPhamView.getIdLoai(),
-                    sanPhamView.getIdHang(),
-                    sanPhamView.getIdMau(),
-                    sanPhamView.getIdKichCo(),
-                    sanPhamView.getIdChatLieu(),
-                    sanPhamView.getIdKieuDang(),
+                    sanPhamView.getTenLoai(),
+                    sanPhamView.getTenHang(),
+                    sanPhamView.getTenMau(),
+                    sanPhamView.getTenKichCo(),
+                    sanPhamView.getTenChatLieu(),
+                    sanPhamView.getTenKieuDang(),
                     sanPhamView.getMota(),
                     sanPhamView.getNgaySanXuat(),
                     sanPhamView.getGiaBan(),
                     sanPhamView.getSoLuong(),
-                    sanPhamView.getTrangThai()
+                    sanPhamView.getTrangThai(sanPhamView.getSoLuong())
 
                 });
             }

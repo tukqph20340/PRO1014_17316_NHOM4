@@ -1,9 +1,13 @@
 package Views;
+
+import ServiceITF.DangNhapSevice;
 import Views.HomeQuanLyBG;
 import javax.swing.JOptionPane;
 
-
 public class Login_ extends javax.swing.JFrame {
+
+    private DangNhapSevice db = new DangNhapSevice();
+
     public Login_() {
         initComponents();
         setLocationRelativeTo(null);
@@ -20,8 +24,8 @@ public class Login_ extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        txtUser = new javax.swing.JTextField();
-        txtpass11 = new javax.swing.JPasswordField();
+        txtTk = new javax.swing.JTextField();
+        txtMk = new javax.swing.JPasswordField();
         btnLogin = new javax.swing.JButton();
         btnCancel = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
@@ -112,8 +116,8 @@ public class Login_ extends javax.swing.JFrame {
                             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtUser, javax.swing.GroupLayout.DEFAULT_SIZE, 267, Short.MAX_VALUE)
-                            .addComponent(txtpass11)))
+                            .addComponent(txtTk, javax.swing.GroupLayout.DEFAULT_SIZE, 267, Short.MAX_VALUE)
+                            .addComponent(txtMk)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap(242, Short.MAX_VALUE)
                         .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -126,12 +130,12 @@ public class Login_ extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(33, 33, 33)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtTk, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
                 .addGap(27, 27, 27)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(txtpass11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtMk, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnLogin)
@@ -180,19 +184,25 @@ public class Login_ extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-//         if (!txtUser.getText().isEmpty() && txtpass11.getPassword().length > 0) {
-//            boolean retult = dangNhapService.checkDangNhap(txtUser.getText(),String.valueOf(txtpass11.getPassword()));
-//            if (retult){
-//                JOptionPane.showMessageDialog(this, "Đăng nhập thành công");
-//                HomeQuanLyBG sp=new HomeQuanLyBG;
-//                sp.setVisible(retult);
-//                this.dispose();
-//            }else{
-//                JOptionPane.showMessageDialog(this, "Đăng nhập không thành công");
-//            }
-//        }else{
-//            JOptionPane.showMessageDialog(this, "Dien day du thong tin dang nhap");
-//        }
+
+        String tk = txtTk.getText();
+        String mk = String.valueOf(txtMk.getPassword());
+        if (tk.trim().isEmpty() || mk.trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Không đc để trống vui lòng nhập đủ");
+            return;
+        } else {
+            boolean retult = db.XacThuc(tk, mk);
+            if (retult) {
+                JOptionPane.showMessageDialog(this, "Đăng nhập thành công");
+                HomeQuanLyBG sp = new HomeQuanLyBG();
+                sp.setVisible(true);
+                this.dispose();
+            } else {
+                JOptionPane.showMessageDialog(this, "Sai tài khoản hoặc mật khẩu vui lòng nhập lại");
+                return;
+            }
+        }
+
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
@@ -240,8 +250,8 @@ public class Login_ extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JTextField txtUser;
-    private javax.swing.JPasswordField txtpass11;
+    private javax.swing.JPasswordField txtMk;
+    private javax.swing.JTextField txtTk;
     // End of variables declaration//GEN-END:variables
 
 }

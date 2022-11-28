@@ -2,13 +2,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package ViewModels;
+package DomainModels;
 
 /**
  *
  * @author fptshop
  */
-public class SanPhamView {
+public class SanPhamModel {
 
     private String MaSP;
     private String TenCuaHang;
@@ -27,10 +27,10 @@ public class SanPhamView {
     private Integer SoLuong;
     private String TrangThai;
 
-    public SanPhamView() {
+    public SanPhamModel() {
     }
 
-    public SanPhamView(String MaSP, String TenCuaHang, String TenNhaCungCap, String Ten, String TenLoai, String TenHang, String TenMau, String TenKichCo, String TenChatLieu, String TenKieuDang, String Mota, String NgaySanXuat, Integer GiaNhap, Integer GiaBan, Integer SoLuong, String TrangThai) {
+    public SanPhamModel(String MaSP, String TenCuaHang, String TenNhaCungCap, String Ten, String TenLoai, String TenHang, String TenMau, String TenKichCo, String TenChatLieu, String TenKieuDang, String Mota, String NgaySanXuat, Integer GiaNhap, Integer GiaBan, Integer SoLuong, String TrangThai) {
         this.MaSP = MaSP;
         this.TenCuaHang = TenCuaHang;
         this.TenNhaCungCap = TenNhaCungCap;
@@ -170,11 +170,12 @@ public class SanPhamView {
     }
 
     public String getTrangThai(Integer SoLuong) {
-        if(SoLuong<1){
+        if (SoLuong < 1) {
             return "HẾT HÀNG";
-        }else{
+        } else {
             return "CÒN HÀNG";
         }
+
     }
 
     public void setTrangThai(String TrangThai) {
@@ -185,7 +186,5 @@ public class SanPhamView {
     public String toString() {
         return "SanPhamModel{" + "MaSP=" + MaSP + ", TenCuaHang=" + TenCuaHang + ", TenNhaCungCap=" + TenNhaCungCap + ", Ten=" + Ten + ", TenLoai=" + TenLoai + ", TenHang=" + TenHang + ", TenMau=" + TenMau + ", TenKichCo=" + TenKichCo + ", TenChatLieu=" + TenChatLieu + ", TenKieuDang=" + TenKieuDang + ", Mota=" + Mota + ", NgaySanXuat=" + NgaySanXuat + ", GiaNhap=" + GiaNhap + ", GiaBan=" + GiaBan + ", SoLuong=" + SoLuong + ", TrangThai=" + TrangThai + '}';
     }
-
-    
 
 }

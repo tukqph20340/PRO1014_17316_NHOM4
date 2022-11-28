@@ -149,7 +149,8 @@ public class NhanVienRepository {
             con.close();
             JOptionPane.showMessageDialog(null, "Bạn đã thêm thành công");
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Mã Nhân Viên đã tồn tại");
+            JOptionPane.showMessageDialog(null, "Thêm thất bại");
+            e.printStackTrace();
         }
         return list;
     }
@@ -204,8 +205,8 @@ public class NhanVienRepository {
         ArrayList<NhanVien> list = new ArrayList<>();
         try {
             Connection con = DBContextTu.getConnection();
-            String sql = "DELETE FROM [dbo].[ChucVu]\n"
-                    + "      WHERE MaCV = ?";
+            String sql = "DELETE FROM [dbo].[NguoiDung]\n"
+                    + "      WHERE MaND = ?";
             PreparedStatement st = con.prepareStatement(sql);
             st.setString(1, MaND);
             st.executeUpdate();

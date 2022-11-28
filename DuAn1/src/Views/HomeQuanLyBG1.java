@@ -1640,9 +1640,19 @@ public class HomeQuanLyBG1 extends javax.swing.JFrame {
 
         jButton28.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jButton28.setText("Xóa");
+        jButton28.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton28ActionPerformed(evt);
+            }
+        });
 
         btnClear.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnClear.setText("Làm Mới");
+        btnClear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnClearActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel23Layout = new javax.swing.GroupLayout(jPanel23);
         jPanel23.setLayout(jPanel23Layout);
@@ -1679,7 +1689,7 @@ public class HomeQuanLyBG1 extends javax.swing.JFrame {
 
         jLabel53.setText("Mã Cửa Hàng");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CH02", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
@@ -2301,6 +2311,38 @@ public class HomeQuanLyBG1 extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_jButton26ActionPerformed
+
+    private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
+        // TODO add your handling code here:
+        txtMaNV.setText("");
+        txtTen.setText("");
+        rdNam.setSelected(false);
+        rdNu.setSelected(false);
+        jComboBox1.setSelectedIndex(0);
+        jTextField19.setText("");
+        txtSdt.setText("");
+        txtdiachi.setText("");
+        jTextField18.setText("");
+        txtTaiKhoan.setText("");
+        password.setText("");
+    }//GEN-LAST:event_btnClearActionPerformed
+
+    private void jButton28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton28ActionPerformed
+        // TODO add your handling code here:
+        int row = jTable1.getSelectedRow();
+        if (row == -1) {
+            JOptionPane.showMessageDialog(null, "Bạn chưa chọn Nhân Viên cần xoá");
+            return;
+        } else {
+            String ma = txtMaNV.getText();
+            try {
+                listNV.xoa(ma);
+                dtm.setRowCount(0);
+                loadNhanVien();
+            } catch (Exception e) {
+            }
+        }
+    }//GEN-LAST:event_jButton28ActionPerformed
 
     void loadNhanVien() {
         List<NhanVienViews> list = listNV.select();

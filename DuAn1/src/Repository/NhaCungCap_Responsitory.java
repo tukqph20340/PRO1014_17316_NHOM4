@@ -67,19 +67,22 @@ public class NhaCungCap_Responsitory {
         return "Thất Bại";
     }
        public String UpdateFormNhaCC(NhaCungCapModel nc){
-        String up = "UPDATE NhaCungCap SET Ten='?',DiaChi='?',Sdt='?' where MaNCC='?'";
+         String up = "UPDATE NhaCungCap set Ten=?,DiaChi=?,Sdt=? where MaNCC=?";
+//         list = new ArrayList<>();
         try {
-            pst =conn.openDBConnection_1().prepareStatement(up);
+            pst = conn.openDBConnection_1().prepareStatement(up);
             pst.setString(1, nc.getTenNCC());
             pst.setString(2, nc.getDiaChi());
             pst.setString(3, nc.getSdt());
-            pst.setObject(4, nc.getMaNCC());
+            pst.setString(4, nc.getMaNCC());
             pst.executeUpdate();
-            return"Sửa thành công";
+            pst.close();
+            return "update thành công";
         } catch (SQLException ex) {
-            Logger.getLogger(NhaCungCap_Responsitory.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
+            return "thất bại";
         }
-        return "Thất bại";
+
     }
     
 }

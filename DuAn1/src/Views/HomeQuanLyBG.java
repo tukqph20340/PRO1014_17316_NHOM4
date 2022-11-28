@@ -2279,8 +2279,6 @@ public class HomeQuanLyBG extends javax.swing.JFrame {
     NhaCungCapModel fildata() {
         return new NhaCungCapModel(txtMNCC.getText(), txtTenNCC.getText(), txtDiaChiNCC.getText(), txtSDT.getText());
     }
-         
-     
 
     private boolean checkValidate(List<NhaCungCapModel> list, String maNV) {
         for (NhaCungCapModel x : list) {
@@ -2334,6 +2332,23 @@ public class HomeQuanLyBG extends javax.swing.JFrame {
 //            JOptionPane.showMessageDialog(this, "Số điện thoại không đúng");
 //            ok = true;
 //        }
+        String sdt = txtSDT.getText();
+        if(sdt.trim().length() != 10){
+            JOptionPane.showMessageDialog(this,"Nhập lại sdt không đúng");
+            return;
+        }
+        if(sdt.trim().startsWith("0")==false){
+            JOptionPane.showMessageDialog(this,"Nhập số 0 ở đầu");
+            return;
+        }
+        try {
+            int a = Integer.parseInt(sdt);
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this,"Nhập số");
+        }
+            
+        
         if (checkValidate(listNCC, txtMNCC.getText())) {
             JOptionPane.showMessageDialog(this, ncc.AddFormNhaCC(fildata()));
             listNCC = ncc.getAll();
@@ -2383,14 +2398,30 @@ public class HomeQuanLyBG extends javax.swing.JFrame {
     }//GEN-LAST:event_btnXoaActionPerformed
 
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
-         int index = tblbang.getSelectedRow();
+        int index = tblbang.getSelectedRow();
+        String ma = txtMNCC.getText();
         if (index == -1) {
             JOptionPane.showMessageDialog(this, "Chọn dòng để sửa");
         } else {
             if (check()) {
-                JOptionPane.showMessageDialog(this,ncc.UpdateFormNhaCC(fildata()));
-                listNCC=ncc.getAllFormNhaCC();
+                if (checkValidate(listNCC, txtMNCC.getText()) == true) {
+                    JOptionPane.showMessageDialog(this, "Mã Không tồn tại");
+                    return;
+                }
+                JOptionPane.showMessageDialog(this, ncc.UpdateFormNhaCC(fildata()));
+                listNCC = ncc.getAll();
                 fill(listNCC);
+                clear();
+
+//                NhaCungCapModel ml = new NhaCungCapModel();
+//                ml.setTenNCC(txtTenNCC.getText());
+//                ml.setDiaChi(txtDiaChiNCC.getText());
+//                ml.setSdt(txtSDT.getText());
+//                ncc.UpdateFormNhaCC(ml, ma);
+//                listNCC = ncc.getAll();
+//                fill(listNCC);
+//                JOptionPane.showMessageDialog(this, "Sửa thành công");
+//                clear();
             }
         }
     }//GEN-LAST:event_btnSuaActionPerformed

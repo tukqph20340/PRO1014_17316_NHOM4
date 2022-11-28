@@ -69,9 +69,10 @@ public class NhaCCSerVice implements NhaCungCapITF {
         }
     }
 
+
     @Override
     public String UpdateFormNhaCC(NhaCungCapModel nc) {
-        try {
+          try {
             return res.UpdateFormNhaCC(nc);
         } catch (Exception e) {
             return null;

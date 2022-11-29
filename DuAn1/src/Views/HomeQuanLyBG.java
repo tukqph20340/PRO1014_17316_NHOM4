@@ -4,8 +4,11 @@
  */
 package Views;
 
+import DomainModels.GioHang;
 import DomainModels.NhaCungCapModel;
 import DomainModels.SanPhamModel;
+import ServiceITF.GioHangITF;
+import ServiceIplm.GioHangIplm;
 import ServiceIplm.NhaCCSerVice;
 import ServiceIplm.SanPhamSevice;
 import ViewModels.SanPhamView;
@@ -38,6 +41,7 @@ public class HomeQuanLyBG extends javax.swing.JFrame {
     DefaultTableModel model = new DefaultTableModel();
     NhaCCSerVice ncc = new NhaCCSerVice();
     List<NhaCungCapModel> listNCC = new ArrayList<>();
+    GioHangITF ghService=new GioHangIplm();
 
     public HomeQuanLyBG() {
         initComponents();
@@ -54,6 +58,15 @@ public class HomeQuanLyBG extends javax.swing.JFrame {
         model = (DefaultTableModel) tblbang.getModel();
         for (NhaCungCapModel nhaCungCapModel : list) {
             model.addRow(nhaCungCapModel.data());
+        }
+    }
+    
+    public void loadTableHoaDon(ArrayList<GioHang> listGH){
+        model = (DefaultTableModel) tblHoaDon.getModel();
+        model.setRowCount(0);
+        model.setColumnIdentifiers(new String[]{"Mã Sản Phẩm","Tên Sản Phẩm", "Số Lượng","Đơn Giá","Thành Tiền"});
+        for (GioHang x : listGH) {
+            model.addRow(new Object[]{x.getMaSP(), x.getTen(), x.getSoluong(), x.getGiaBan(), x.hienthiThanhTien()});
         }
     }
 
@@ -522,6 +535,11 @@ public class HomeQuanLyBG extends javax.swing.JFrame {
 
         pnlSanphamHD.setBackground(new java.awt.Color(255, 255, 102));
         pnlSanphamHD.setBorder(javax.swing.BorderFactory.createTitledBorder("Sản phẩm"));
+        pnlSanphamHD.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pnlSanphamHDMouseClicked(evt);
+            }
+        });
 
         tblSanphamHD.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -546,7 +564,7 @@ public class HomeQuanLyBG extends javax.swing.JFrame {
         pnlSanphamHDLayout.setHorizontalGroup(
             pnlSanphamHDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlSanphamHDLayout.createSequentialGroup()
-                .addContainerGap(429, Short.MAX_VALUE)
+                .addContainerGap(447, Short.MAX_VALUE)
                 .addComponent(jButton2)
                 .addGap(18, 18, 18)
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -579,6 +597,11 @@ public class HomeQuanLyBG extends javax.swing.JFrame {
         jButton1.setText("Xóa Sản Phẩm");
 
         jButton11.setText("+");
+        jButton11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton11ActionPerformed(evt);
+            }
+        });
 
         jButton30.setText("-");
 
@@ -831,7 +854,7 @@ public class HomeQuanLyBG extends javax.swing.JFrame {
                 .addComponent(jLabel36)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtTienthuaHD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
                 .addComponent(btnThanhtoanHD, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnThanhtoanHD1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1214,7 +1237,7 @@ public class HomeQuanLyBG extends javax.swing.JFrame {
                 .addGroup(pnlSanPhamLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(46, Short.MAX_VALUE))
+                .addContainerGap(65, Short.MAX_VALUE))
         );
         pnlSanPhamLayout.setVerticalGroup(
             pnlSanPhamLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1381,7 +1404,7 @@ public class HomeQuanLyBG extends javax.swing.JFrame {
                 .addGroup(pnlCuaHangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(65, Short.MAX_VALUE))
+                .addContainerGap(82, Short.MAX_VALUE))
         );
         pnlCuaHangLayout.setVerticalGroup(
             pnlCuaHangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1621,7 +1644,7 @@ public class HomeQuanLyBG extends javax.swing.JFrame {
                 .addGroup(pnlKhachHangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jPanel40, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel39, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(81, Short.MAX_VALUE))
+                .addContainerGap(98, Short.MAX_VALUE))
         );
         pnlKhachHangLayout.setVerticalGroup(
             pnlKhachHangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2062,7 +2085,7 @@ public class HomeQuanLyBG extends javax.swing.JFrame {
                 .addGroup(pnlNhaCungCapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(65, Short.MAX_VALUE))
+                .addContainerGap(78, Short.MAX_VALUE))
         );
         pnlNhaCungCapLayout.setVerticalGroup(
             pnlNhaCungCapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2206,7 +2229,7 @@ public class HomeQuanLyBG extends javax.swing.JFrame {
             .addGroup(pnlDoiMatKhauLayout.createSequentialGroup()
                 .addGap(79, 79, 79)
                 .addComponent(jPanel30, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(270, Short.MAX_VALUE))
+                .addContainerGap(287, Short.MAX_VALUE))
         );
         pnlDoiMatKhauLayout.setVerticalGroup(
             pnlDoiMatKhauLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2302,6 +2325,17 @@ public class HomeQuanLyBG extends javax.swing.JFrame {
 
     private void tblSanphamHDMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblSanphamHDMouseClicked
         // TODO add your handling code here:
+        GioHang x=new GioHang();
+        int row=tblSanphamHD.getSelectedRow();
+        String ma=tblSanphamHD.getValueAt(row, 0).toString();
+        try {
+            ghService.getlistGioHang(ma);
+            loadTableHoaDon(ghService.getlistGioHang(ma));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+            
+        
 
     }//GEN-LAST:event_tblSanphamHDMouseClicked
 
@@ -2884,6 +2918,15 @@ public class HomeQuanLyBG extends javax.swing.JFrame {
     private void btnThanhtoanHD2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThanhtoanHD2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnThanhtoanHD2ActionPerformed
+
+    private void pnlSanphamHDMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlSanphamHDMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pnlSanphamHDMouseClicked
+
+    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jButton11ActionPerformed
     public void Mouseclick(List<NhaCungCapModel> list) {
         int index = tblbang.getSelectedRow();
         if (index == -1) {

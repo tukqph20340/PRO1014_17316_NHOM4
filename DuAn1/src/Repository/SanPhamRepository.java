@@ -62,6 +62,7 @@ public class SanPhamRepository {
                 listSp.add(sp);
             }
         } catch (Exception e) {
+            e.printStackTrace();
             JOptionPane.showMessageDialog(null, "lỗi hiển thị");
         }
         return listSp;

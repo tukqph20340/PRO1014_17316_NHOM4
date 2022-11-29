@@ -7,7 +7,9 @@ package Views;
 import DomainModels.NhaCungCapModel;
 import DomainModels.SanPhamModel;
 import ServiceIplm.NhaCCSerVice;
+import ServiceIplm.NhanVienService;
 import ServiceIplm.SanPhamSevice;
+import ViewModels.NhanVienViews;
 import ViewModels.SanPhamView;
 import java.awt.CardLayout;
 import java.awt.Component;
@@ -32,9 +34,13 @@ public class HomeQuanLyBG extends javax.swing.JFrame {
 
     private CardLayout cardLayout;
     private SanPhamSevice listSp = new SanPhamSevice();
+    private NhanVienService listNV = new NhanVienService();
+
     DefaultTableModel modeSp = new DefaultTableModel();
     DefaultComboBoxModel ComSanPham = new DefaultComboBoxModel();
     DefaultComboBoxModel ComSanPham1 = new DefaultComboBoxModel();
+    DefaultComboBoxModel cbbNVien = new DefaultComboBoxModel();
+    DefaultComboBoxModel cbbNVien1 = new DefaultComboBoxModel();
     DefaultTableModel model = new DefaultTableModel();
     NhaCCSerVice ncc = new NhaCCSerVice();
     List<NhaCungCapModel> listNCC = new ArrayList<>();
@@ -44,6 +50,7 @@ public class HomeQuanLyBG extends javax.swing.JFrame {
         cardLayout = (CardLayout) (pnlcards.getLayout());
         ComSanPham = (DefaultComboBoxModel) ComMaCH.getModel();
         ComSanPham1 = (DefaultComboBoxModel) ComMaCNN.getModel();
+        cbbNVien = (DefaultComboBoxModel) jComboBox1.getModel();
 
         setLocationRelativeTo(this);
 
@@ -1650,6 +1657,11 @@ public class HomeQuanLyBG extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
@@ -1704,15 +1716,30 @@ public class HomeQuanLyBG extends javax.swing.JFrame {
 
         jButton26.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jButton26.setText("Thêm");
+        jButton26.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton26ActionPerformed(evt);
+            }
+        });
 
         jButton27.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jButton27.setText("Sửa");
 
         jButton28.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jButton28.setText("Xóa");
+        jButton28.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton28ActionPerformed(evt);
+            }
+        });
 
         jButton29.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jButton29.setText("Làm Mới");
+        jButton29.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton29ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel23Layout = new javax.swing.GroupLayout(jPanel23);
         jPanel23.setLayout(jPanel23Layout);
@@ -2277,6 +2304,12 @@ public class HomeQuanLyBG extends javax.swing.JFrame {
     private void btnNhanVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNhanVienActionPerformed
         // TODO add your handling code here:
         cardLayout.show(pnlcards, "card6");
+
+        modeSp = (DefaultTableModel) jTable1.getModel();
+        String[] headers = {"Mã ND", "Họ Và Tên", "Địa Chỉ", "Giới Tính", "Số Điện Thoại", "Tài Khoản", "Mật Khẩu", "Ngày Sinh", "Chức Vụ", "Mã CH"};
+        modeSp.setColumnIdentifiers(headers);
+        modeSp.setRowCount(0);
+        loadNhanVien();
     }//GEN-LAST:event_btnNhanVienActionPerformed
 
     private void btnDoiMatKhauActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDoiMatKhauActionPerformed
@@ -2884,6 +2917,79 @@ public class HomeQuanLyBG extends javax.swing.JFrame {
     private void btnThanhtoanHD2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThanhtoanHD2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnThanhtoanHD2ActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        // TODO add your handling code here:
+        int row = jTable1.getSelectedRow();
+
+        txtMaNV.setText(jTable1.getValueAt(row, 0).toString());
+        txtTen.setText(jTable1.getValueAt(row, 1).toString());
+//        gioiTinh.setText(jTable1.getValueAt(row, 3).toString());
+        jComboBox1.setSelectedItem(jTable1.getValueAt(row, 9).toString());
+        jTextField19.setText(jTable1.getValueAt(row, 8).toString());
+        txtSdt.setText(jTable1.getValueAt(row, 2).toString());
+        txtdiachi.setText(jTable1.getValueAt(row, 4).toString());
+        jTextField18.setText(jTable1.getValueAt(row, 7).toString());
+        txtTaiKhoan.setText(jTable1.getValueAt(row, 5).toString());
+        password.setText(jTable1.getValueAt(row, 6).toString());
+
+
+    }//GEN-LAST:event_jTable1MouseClicked
+
+    private void jButton26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton26ActionPerformed
+        // TODO add your handling code here:
+        String Ma = txtMaNV.getText();
+        String ten = txtTen.getText();
+//        String gioiTinh = (String) rdNam.isSelected();
+        String MaCH = (String) jComboBox1.getSelectedItem();
+        String chucVu = jTextField19.getText();
+        String diachi = txtSdt.getText();
+        String soDT = txtdiachi.getText();
+        String NSinh = jTextField18.getText();
+        String tk = txtTaiKhoan.getText();
+        String mk = password.getText();
+
+        try {
+            listNV.them(MaCH, ten, diachi, NSinh, soDT, tk, mk, NSinh, chucVu, MaCH);
+            modeSp.setRowCount(0);
+            loadNhanVien();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Lỗi Thêm dữ liệu");
+            return;
+        }
+    }//GEN-LAST:event_jButton26ActionPerformed
+
+    private void jButton29ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton29ActionPerformed
+        // TODO add your handling code here:
+        txtMaNV.setText("");
+        txtTen.setText("");
+        rdNam.setSelected(false);
+        rdNu.setSelected(false);
+        jComboBox1.setSelectedIndex(0);
+        jTextField19.setText("");
+        txtSdt.setText("");
+        txtdiachi.setText("");
+        jTextField18.setText("");
+        txtTaiKhoan.setText("");
+        password.setText("");
+    }//GEN-LAST:event_jButton29ActionPerformed
+
+    private void jButton28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton28ActionPerformed
+        // TODO add your handling code here:
+        int row = jTable1.getSelectedRow();
+        if (row == -1) {
+            JOptionPane.showMessageDialog(null, "Bạn chưa chọn Nhân Viên cần xoá");
+            return;
+        } else {
+            String ma = txtMaNV.getText();
+            try {
+                listNV.xoa(ma);
+                modeSp.setRowCount(0);
+                loadNhanVien();
+            } catch (Exception e) {
+            }
+        }
+    }//GEN-LAST:event_jButton28ActionPerformed
     public void Mouseclick(List<NhaCungCapModel> list) {
         int index = tblbang.getSelectedRow();
         if (index == -1) {
@@ -2924,6 +3030,24 @@ public class HomeQuanLyBG extends javax.swing.JFrame {
                 sanPhamView.getSoLuong(),
                 sanPhamView.getTrangThai(sanPhamView.getSoLuong())
 
+            });
+        }
+    }
+
+    void loadNhanVien() {
+        List<NhanVienViews> list = listNV.select();
+        for (NhanVienViews nhanVienViews : list) {
+            modeSp.addRow(new Object[]{
+                nhanVienViews.getMaND(),
+                nhanVienViews.getHoTen(),
+                nhanVienViews.getDiaChi(),
+                nhanVienViews.getGioiTinh(),
+                nhanVienViews.getSoDT(),
+                nhanVienViews.getTKhoan(),
+                nhanVienViews.getMKhau(),
+                nhanVienViews.getNgaySinh(),
+                nhanVienViews.getChucVu(),
+                nhanVienViews.getMaCH()
             });
         }
     }

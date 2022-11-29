@@ -12,7 +12,7 @@ import java.util.List;
  *
  * @author ADMIN
  */
-public interface NhanVienImpl {
+public interface NhanVienITF {
     
     public List<NhanVienViews> select();
     

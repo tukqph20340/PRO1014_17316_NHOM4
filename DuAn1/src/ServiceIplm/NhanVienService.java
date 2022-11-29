@@ -6,17 +6,17 @@ package ServiceIplm;
 
 import DomainModels.NhanVien;
 import Repository.NhanVienRepository;
-import ServiceITF.NhanVienImpl;
 import ViewModels.NhanVienViews;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
+import ServiceITF.NhanVienITF;
 
 /**
  *
  * @author ADMIN
  */
-public class NhanVienService implements NhanVienImpl {
+public class NhanVienService implements NhanVienITF {
 
     private NhanVienRepository nvlist = new NhanVienRepository();
 
